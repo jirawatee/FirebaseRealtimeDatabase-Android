@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:id="@+id/activity_sample"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/white"
+	android:paddingStart="@dimen/activity_horizontal_margin"
+	android:paddingEnd="@dimen/activity_horizontal_margin"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	tools:context="com.example.fdatabase.BasicActivity">
+
+	<ImageView
+		android:id="@+id/logo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentTop="true"
+		android:src="@drawable/logo"
+		android:contentDescription="@string/app_name"/>
+
+	<TextView
+		android:id="@+id/txt_result"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/logo"
+		android:layout_above="@+id/bottom_zone1"
+		android:scrollbars="vertical"
+		tools:text="@string/app_name"/>
+
+	<LinearLayout
+		android:id="@+id/bottom_zone1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/line"
+		android:orientation="horizontal">
+
+		<EditText
+			android:id="@+id/edt_username"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="3"
+			android:hint="@string/hint_username"
+			android:inputType="text"/>
+
+		<Button
+			android:id="@+id/btn_set"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:textAllCaps="false"
+			android:text="@string/btn_set_value"/>
+
+	</LinearLayout>
+
+	<View
+		android:id="@+id/line"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginTop="@dimen/activity_vertical_margin"
+		android:layout_marginBottom="@dimen/activity_vertical_margin"
+		android:layout_above="@+id/edt_message"
+		android:background="#eeeeeeee"/>
+
+	<EditText
+		android:id="@+id/edt_message"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/bottom_zone2"
+		android:hint="@string/hint_body"
+		android:inputType="text"/>
+
+	<LinearLayout
+		android:id="@+id/bottom_zone2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/btn_push"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/btn_push"
+			android:textAllCaps="false"/>
+
+		<Button
+			android:id="@+id/btn_update"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/btn_update_children"
+			android:textAllCaps="false"/>
+
+		<Button
+			android:id="@+id/btn_remove"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/btn_remove_value"
+			android:textAllCaps="false"/>
+
+	</LinearLayout>
+
+</RelativeLayout>

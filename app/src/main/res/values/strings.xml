@@ -1,0 +1,30 @@
+<resources>
+	<string name="app_name">Database</string>
+	<string name="btn_advance">Advance (Auth)</string>
+	<string name="btn_basic">Basic (No Auth)</string>
+	<string name="btn_push">Push</string>
+	<string name="btn_remove_value">removeValue</string>
+	<string name="btn_set_value">setValue</string>
+	<string name="btn_update_children">updateChildren</string>
+	<string name="fail_read">Failed to read value: %s</string>
+	<string name="hint_password">Password</string>
+	<string name="hint_email">Email</string>
+	<string name="hint_title">Title</string>
+	<string name="hint_body">Write your post…</string>
+	<string name="hint_username">Username…</string>
+	<string name="menu_chat">Chat</string>
+	<string name="menu_logout">Log out</string>
+	<string name="post">Post</string>
+	<string name="send">SEND</string>
+	<string name="required">Required</string>
+	<string name="sign_in">Sign In</string>
+	<string name="sign_up">Sign Up</string>
+	<string name="username">Current username: %s \n\n</string>
+	<string name="wrote">You wrote: %s</string>
+
+	<string-array name="headings">
+		<item>Recent</item>
+		<item>My Posts</item>
+		<item>My Top Posts</item>
+	</string-array>
+</resources>

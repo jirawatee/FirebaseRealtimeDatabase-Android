@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="com.example.fdatabase.NewPostActivity">
+
+	<EditText
+		android:id="@+id/field_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/activity_horizontal_margin"
+		android:hint="@string/hint_title"
+		android:maxLines="1"/>
+
+	<EditText
+		android:id="@+id/field_body"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/field_title"
+		android:layout_margin="@dimen/activity_horizontal_margin"
+		android:hint="@string/hint_body"
+		android:inputType="textMultiLine"
+		android:maxLines="10"
+		android:scrollHorizontally="false"/>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab_submit_post"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:layout_margin="@dimen/activity_vertical_margin"
+		android:src="@drawable/ic_navigation_check_24"/>
+
+</RelativeLayout>
