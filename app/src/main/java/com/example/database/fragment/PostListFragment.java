@@ -1,4 +1,4 @@
-package com.example.fdatabase.fragment;
+package com.example.database.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,10 +14,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.example.fdatabase.PostDetailActivity;
-import com.example.fdatabase.R;
-import com.example.fdatabase.models.Post;
-import com.example.fdatabase.viewholder.PostViewHolder;
+import com.example.database.PostDetailActivity;
+import com.example.database.R;
+import com.example.database.models.Post;
+import com.example.database.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

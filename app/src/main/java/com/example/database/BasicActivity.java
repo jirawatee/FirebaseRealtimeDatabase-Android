@@ -1,4 +1,4 @@
-package com.example.fdatabase;
+package com.example.database;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.fdatabase.models.FriendlyMessage;
+import com.example.database.models.FriendlyMessage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.fdatabase.R.string.username;
+import static com.example.database.R.string.username;
 
 public class BasicActivity extends AppCompatActivity {
 	private static final String CHILD_USERS = "users";

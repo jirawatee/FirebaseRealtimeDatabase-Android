@@ -1,4 +1,4 @@
-package com.example.fdatabase.fragment;
+package com.example.database.fragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;

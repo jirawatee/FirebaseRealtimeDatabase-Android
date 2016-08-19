@@ -1,4 +1,4 @@
-package com.example.fdatabase;
+package com.example.database;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.fdatabase.models.Post;
-import com.example.fdatabase.models.User;
+import com.example.database.models.Post;
+import com.example.database.models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

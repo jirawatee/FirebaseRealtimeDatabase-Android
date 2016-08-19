@@ -1,4 +1,4 @@
-package com.example.fdatabase;
+package com.example.database;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.fdatabase.fragment.MyPostsFragment;
-import com.example.fdatabase.fragment.MyTopPostsFragment;
-import com.example.fdatabase.fragment.RecentPostsFragment;
+import com.example.database.fragment.MyPostsFragment;
+import com.example.database.fragment.MyTopPostsFragment;
+import com.example.database.fragment.RecentPostsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

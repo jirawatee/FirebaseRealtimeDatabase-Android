@@ -1,4 +1,4 @@
-package com.example.fdatabase;
+package com.example.database;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fdatabase.models.Comment;
-import com.example.fdatabase.models.Post;
-import com.example.fdatabase.models.User;
+import com.example.database.models.Comment;
+import com.example.database.models.Post;
+import com.example.database.models.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -5,7 +5,7 @@ android {
 	buildToolsVersion "24.0.1"
 
 	defaultConfig {
-		applicationId "com.example.fdatabase"
+		applicationId "com.example.database"
 		minSdkVersion 17
 		targetSdkVersion 24
 		versionCode 1
@@ -22,12 +22,11 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-
-	compile 'com.android.support:appcompat-v7:24.1.1'
-	compile 'com.android.support:recyclerview-v7:24.1.1'
-	compile 'com.android.support:cardview-v7:24.1.1'
-	compile 'com.android.support:design:24.1.1'
-	compile 'com.firebaseui:firebase-ui-database:0.4.3'
+	compile 'com.android.support:appcompat-v7:24.2.0'
+	compile 'com.android.support:recyclerview-v7:24.2.0'
+	compile 'com.android.support:cardview-v7:24.2.0'
+	compile 'com.android.support:design:24.2.0'
+	compile 'com.firebaseui:firebase-ui-database:0.4.4'
 	compile 'com.google.firebase:firebase-database:9.4.0'
 	compile 'com.google.firebase:firebase-auth:9.4.0'
 }

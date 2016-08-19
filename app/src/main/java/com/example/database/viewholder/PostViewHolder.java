@@ -1,12 +1,12 @@
-package com.example.fdatabase.viewholder;
+package com.example.database.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.fdatabase.R;
-import com.example.fdatabase.models.Post;
+import com.example.database.R;
+import com.example.database.models.Post;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 	public ImageView starView;

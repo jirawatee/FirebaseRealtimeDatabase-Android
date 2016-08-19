@@ -1,4 +1,4 @@
-package com.example.fdatabase;
+package com.example.database;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.example.fdatabase.models;
+package com.example.database.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.example.fdatabase"
+<manifest package="com.example.database"
 		  xmlns:android="http://schemas.android.com/apk/res/android"
 		  android:installLocation="auto">
 
@@ -11,18 +11,18 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
 
-		<activity android:name=".SwitchActivity">
+		<activity android:name="com.example.database.SwitchActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-        <activity android:name=".SignInActivity"/>
-		<activity android:name=".MainActivity"/>
-		<activity android:name=".NewPostActivity"/>
-		<activity android:name=".PostDetailActivity"/>
-		<activity android:name=".ChatActivity"/>
-		<activity android:name=".BasicActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity android:name="com.example.database.SignInActivity"/>
+		<activity android:name="com.example.database.MainActivity"/>
+		<activity android:name="com.example.database.NewPostActivity"/>
+		<activity android:name="com.example.database.PostDetailActivity"/>
+		<activity android:name="com.example.database.ChatActivity"/>
+		<activity android:name="com.example.database.BasicActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
 
 	</application>
 

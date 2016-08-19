@@ -1,4 +1,4 @@
-package com.example.fdatabase.models;
+package com.example.database.models;
 
 public class FriendlyMessage {
     private String text;
