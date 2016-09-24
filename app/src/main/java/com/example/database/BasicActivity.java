@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +62,7 @@ public class BasicActivity extends AppCompatActivity {
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				mDialog.dismiss();
 				mUsername = dataSnapshot.child(CHILD_USERS).child(UID).getValue(String.class);
+
 				mTextView.setText(getString(username, mUsername));
 				if (TextUtils.isEmpty(mUsername)) {
 					mButtonPush.setEnabled(false);
@@ -73,8 +75,13 @@ public class BasicActivity extends AppCompatActivity {
 				while(children.iterator().hasNext()){
 					String key= children.iterator().next().getKey();
 					FriendlyMessage friendlyMessage = dataSnapshot.child(CHILD_MESSAGES).child(key).getValue(FriendlyMessage.class);
+
+					long now = System.currentTimeMillis();
+					long past = now - (60 * 60 * 24 * 45 * 1000L);
+					String x = DateUtils.getRelativeTimeSpanString(past, now, DateUtils.MINUTE_IN_MILLIS).toString();
+
 					mTextView.append("username: " + friendlyMessage.getUsername() + " | ");
-					mTextView.append("text: " + friendlyMessage.getText() + "\n");
+					mTextView.append("text: " + friendlyMessage.getText() + " (" + x + ")" + "\n");
 				}
 			}
 

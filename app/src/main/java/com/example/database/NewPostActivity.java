@@ -1,6 +1,7 @@
 package com.example.database;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class NewPostActivity extends BaseActivity {
 	private DatabaseReference mDatabase;
 	private EditText mTitleField, mBodyField;
+	private FloatingActionButton mSubmitButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,11 @@ public class NewPostActivity extends BaseActivity {
 		setContentView(R.layout.activity_new_post);
 		mTitleField = (EditText) findViewById(R.id.field_title);
 		mBodyField = (EditText) findViewById(R.id.field_body);
+		mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_post);
 
 		mDatabase = FirebaseDatabase.getInstance().getReference();
 
-		findViewById(R.id.fab_submit_post).setOnClickListener(new View.OnClickListener() {
+		mSubmitButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				submitPost();
@@ -58,6 +61,8 @@ public class NewPostActivity extends BaseActivity {
 		final String userId = getUid();
 
 		if (validateForm(title, body)) {
+			// Disable button so there are no multi-posts
+			setEditingEnabled(false);
 			mDatabase.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 				@Override
 				public void onDataChange(DataSnapshot dataSnapshot) {
@@ -67,14 +72,26 @@ public class NewPostActivity extends BaseActivity {
 					} else {
 						writeNewPost(userId, user.username, title, body);
 					}
+					setEditingEnabled(true);
 					finish();
 				}
 
 				@Override
 				public void onCancelled(DatabaseError databaseError) {
+					setEditingEnabled(true);
 					Toast.makeText(NewPostActivity.this, "onCancelled: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
 				}
 			});
+		}
+	}
+
+	private void setEditingEnabled(boolean enabled) {
+		mTitleField.setEnabled(enabled);
+		mBodyField.setEnabled(enabled);
+		if (enabled) {
+			mSubmitButton.setVisibility(View.VISIBLE);
+		} else {
+			mSubmitButton.setVisibility(View.GONE);
 		}
 	}
 
@@ -86,8 +103,8 @@ public class NewPostActivity extends BaseActivity {
 		Map<String, Object> postValues = post.toMap();
 
 		Map<String, Object> childUpdates = new HashMap<>();
-		childUpdates.put("/posts/-KOo1jaSnU2XFiSonIjB", postValues);
-		childUpdates.put("/user-posts/" + userId + "/-KOo1jaSnU2XFiSonIjB", postValues);
+		childUpdates.put("/posts/" + key, postValues);
+		childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
 
 		mDatabase.updateChildren(childUpdates);
 	}
