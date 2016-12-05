@@ -44,7 +44,6 @@ public class BasicActivity extends AppCompatActivity {
 		initWidget();
 
 		FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-		//firebaseDatabase.setPersistenceEnabled(true);
 
 		mRootRef = firebaseDatabase.getReference();
 		mUsersRef = mRootRef.child(CHILD_USERS);
