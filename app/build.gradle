@@ -6,7 +6,7 @@ android {
 
 	defaultConfig {
 		applicationId "com.example.database"
-		minSdkVersion 17
+		minSdkVersion 21
 		targetSdkVersion 25
 		versionCode 1
 		versionName "1.0"
@@ -31,7 +31,7 @@ dependencies {
 	compile "com.android.support:design:$supportLibraryVersion"
 
 	// Firebase UI
-	compile 'com.firebaseui:firebase-ui-database:1.0.1'
+	compile 'com.firebaseui:firebase-ui-database:1.1.1'
 
 	compile "com.google.firebase:firebase-database:$firebaseLibraryVersion"
 	compile "com.google.firebase:firebase-auth:$firebaseLibraryVersion"
