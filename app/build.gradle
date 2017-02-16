@@ -6,7 +6,7 @@ android {
 
 	defaultConfig {
 		applicationId "com.example.database"
-		minSdkVersion 21
+		minSdkVersion 25
 		targetSdkVersion 25
 		versionCode 1
 		versionName "1.0"
@@ -21,8 +21,8 @@ android {
 	}
 }
 
-ext.supportLibraryVersion = '25.1.0'
-ext.firebaseLibraryVersion = '10.0.1'
+ext.supportLibraryVersion = '25.1.1'
+ext.firebaseLibraryVersion = '10.2.0'
 
 dependencies {
 	compile "com.android.support:appcompat-v7:$supportLibraryVersion"

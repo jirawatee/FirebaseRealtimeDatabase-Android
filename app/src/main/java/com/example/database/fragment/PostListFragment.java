@@ -71,8 +71,13 @@ public abstract class PostListFragment extends Fragment {
 		Query postsQuery = getQuery(mDatabase);
 		mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.item_post, PostViewHolder.class, postsQuery) {
 			@Override
-			protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
+			protected void onDataChanged() {
+				super.onDataChanged();
 				mDialog.dismiss();
+			}
+
+			@Override
+			protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
 				final DatabaseReference postRef = getRef(position);
 
 				// Determine if the current user has liked this post and set UI accordingly

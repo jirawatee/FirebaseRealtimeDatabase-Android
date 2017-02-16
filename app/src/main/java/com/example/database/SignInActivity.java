@@ -17,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
-	private DatabaseReference mDatabase;
 	private EditText mEmailField, mPasswordField;
 	private FirebaseAuth mAuth;
 
@@ -31,7 +30,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 		findViewById(R.id.button_sign_in).setOnClickListener(this);
 		findViewById(R.id.button_sign_up).setOnClickListener(this);
 
-		mDatabase = FirebaseDatabase.getInstance().getReference();
+
 		mAuth = FirebaseAuth.getInstance();
 	}
 
@@ -51,6 +50,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 		}
 
 		User user = new User(username, email);
+		DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 		mDatabase.child("users").child(firebaseUser.getUid()).setValue(user);
 
 		startActivity(new Intent(this, MainActivity.class));
