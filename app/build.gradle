@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion 25
-	buildToolsVersion "25.0.2"
+	buildToolsVersion "26.0.0"
 
 	defaultConfig {
 		applicationId "com.example.database"
@@ -16,13 +16,15 @@ android {
 		release {
 			minifyEnabled true
 			shrinkResources true
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			splits.abi.enable = false
+			splits.density.enable = false
+			aaptOptions.cruncherEnabled = false
 		}
 	}
 }
-
-ext.supportLibraryVersion = '25.1.1'
-ext.firebaseLibraryVersion = '10.2.0'
 
 dependencies {
 	compile "com.android.support:appcompat-v7:$supportLibraryVersion"
@@ -31,7 +33,7 @@ dependencies {
 	compile "com.android.support:design:$supportLibraryVersion"
 
 	// Firebase UI
-	compile 'com.firebaseui:firebase-ui-database:1.1.1'
+	compile 'com.firebaseui:firebase-ui-database:2.0.1'
 
 	compile "com.google.firebase:firebase-database:$firebaseLibraryVersion"
 	compile "com.google.firebase:firebase-auth:$firebaseLibraryVersion"

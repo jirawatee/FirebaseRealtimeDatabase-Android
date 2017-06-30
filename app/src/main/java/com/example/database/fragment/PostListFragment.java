@@ -71,7 +71,7 @@ public abstract class PostListFragment extends Fragment {
 		Query postsQuery = getQuery(mDatabase);
 		mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.item_post, PostViewHolder.class, postsQuery) {
 			@Override
-			protected void onDataChanged() {
+			public void onDataChanged() {
 				super.onDataChanged();
 				mDialog.dismiss();
 			}

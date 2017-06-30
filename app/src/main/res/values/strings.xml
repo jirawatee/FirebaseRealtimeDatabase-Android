@@ -20,7 +20,6 @@
 	<string name="sign_in">Sign In</string>
 	<string name="sign_up">Sign Up</string>
 	<string name="username">Current username: %s \n\n</string>
-	<string name="wrote">You wrote: %s</string>
 
 	<string-array name="headings">
 		<item>Recent</item>
