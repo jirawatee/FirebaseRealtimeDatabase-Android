@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 25
-	buildToolsVersion "26.0.0"
+	compileSdkVersion compileAndTargetSdk
+	buildToolsVersion '26.0.1'
 
 	defaultConfig {
 		applicationId "com.example.database"
 		minSdkVersion 25
-		targetSdkVersion 25
+		targetSdkVersion compileAndTargetSdk
 		versionCode 1
 		versionName "1.0"
 	}
@@ -33,7 +33,7 @@ dependencies {
 	compile "com.android.support:design:$supportLibraryVersion"
 
 	// Firebase UI
-	compile 'com.firebaseui:firebase-ui-database:2.0.1'
+	compile 'com.firebaseui:firebase-ui-database:2.2.0'
 
 	compile "com.google.firebase:firebase-database:$firebaseLibraryVersion"
 	compile "com.google.firebase:firebase-auth:$firebaseLibraryVersion"
