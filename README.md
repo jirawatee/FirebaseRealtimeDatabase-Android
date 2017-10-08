@@ -2,8 +2,8 @@
 Firebase Realtime Database code guideline for Android developer
 
 ## Prerequisites
-* Supported Android 4.0.1 (Ice Cream Sandwich) and newer
-* Google Play services 11.0.4 or newer
+* Supported Android 4.0.1 (Ice Cream Sandwich) or newer
+* Google Play services 11.4.2 or newer
 * Android Studio 2.3 or higher
 * google-services.json in app-level folder
 

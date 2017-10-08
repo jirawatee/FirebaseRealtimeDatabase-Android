@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
 			}
 		};
 
-		ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
+		ViewPager mViewPager = findViewById(R.id.container);
 		mViewPager.setAdapter(mPagerAdapter);
 
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+		TabLayout tabLayout = findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(mViewPager);
 
 		findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {

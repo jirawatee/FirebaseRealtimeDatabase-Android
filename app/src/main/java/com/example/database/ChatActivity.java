@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,16 +18,18 @@ import android.widget.TextView;
 import com.example.database.models.FriendlyMessage;
 import com.example.database.models.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class ChatActivity extends AppCompatActivity {
-	public static final String MESSAGES_CHILD = "messages";
+	public static final String MESSAGES_CHILD = "chat";
 
 	private DatabaseReference mFirebaseDatabaseReference;
 	private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
@@ -34,15 +38,15 @@ public class ChatActivity extends AppCompatActivity {
 	private RecyclerView mMessageRecyclerView;
 	private LinearLayoutManager mLinearLayoutManager;
 	private EditText mMessageEditText;
-	private String mUsername = "Anonymous";
+	private String mEmail = "Anonymous";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
 
-		mMessageEditText = (EditText) findViewById(R.id.messageEditText);
-		mMessageRecyclerView = (RecyclerView) findViewById(R.id.messageRecyclerView);
+		mMessageEditText = findViewById(R.id.messageEditText);
+		mMessageRecyclerView = findViewById(R.id.messageRecyclerView);
 		mLinearLayoutManager = new LinearLayoutManager(this);
 		mLinearLayoutManager.setStackFromEnd(true);
 
@@ -54,24 +58,22 @@ public class ChatActivity extends AppCompatActivity {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				User user = dataSnapshot.getValue(User.class);
-				mUsername = user.username;
+				mEmail = user.email;
 			}
 
 			@Override
-			public void onCancelled(DatabaseError databaseError) {
-
-			}
+			public void onCancelled(DatabaseError databaseError) {}
 		});
 
-		mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(
-				FriendlyMessage.class,
-				R.layout.item_message,
-				MessageViewHolder.class,
-				mFirebaseDatabaseReference.child(MESSAGES_CHILD)
-		) {
+		Query query = mFirebaseDatabaseReference.child(MESSAGES_CHILD);
+		FirebaseRecyclerOptions<FriendlyMessage> options = new FirebaseRecyclerOptions.Builder<FriendlyMessage>()
+				.setQuery(query, FriendlyMessage.class)
+				.build();
+
+		mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(options) {
 			@Override
-			protected void populateViewHolder(MessageViewHolder viewHolder, FriendlyMessage friendlyMessage, int position) {
-				if (friendlyMessage.getUsername().equals(mUsername)) {
+			protected void onBindViewHolder(MessageViewHolder viewHolder, int position, FriendlyMessage friendlyMessage) {
+				if (friendlyMessage.getUsername().equals(mEmail)) {
 					viewHolder.row.setGravity(Gravity.END);
 				} else {
 					viewHolder.row.setGravity(Gravity.START);
@@ -79,7 +81,14 @@ public class ChatActivity extends AppCompatActivity {
 				viewHolder.messageTextView.setText(friendlyMessage.getText());
 				viewHolder.messengerTextView.setText(friendlyMessage.getUsername());
 			}
+
+			@Override
+			public MessageViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+				LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+				return new MessageViewHolder(inflater.inflate(R.layout.item_message, viewGroup, false));
+			}
 		};
+
 		mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
 			@Override
 			public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -115,27 +124,43 @@ public class ChatActivity extends AppCompatActivity {
 			}
 		});
 
-		mSendButton = (Button) findViewById(R.id.sendButton);
+		mSendButton = findViewById(R.id.sendButton);
 		mSendButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername);
+				FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mEmail);
 				mFirebaseDatabaseReference.child(MESSAGES_CHILD).push().setValue(friendlyMessage);
 				mMessageEditText.setText("");
 			}
 		});
 	}
 
-	public static class MessageViewHolder extends RecyclerView.ViewHolder {
-		public LinearLayout row;
-		public TextView messageTextView;
-		public TextView messengerTextView;
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (mFirebaseAdapter != null) {
+			mFirebaseAdapter.startListening();
+		}
+	}
 
-		public MessageViewHolder(View v) {
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (mFirebaseAdapter != null) {
+			mFirebaseAdapter.stopListening();
+		}
+	}
+
+	public static class MessageViewHolder extends RecyclerView.ViewHolder {
+		LinearLayout row;
+		TextView messageTextView;
+		TextView messengerTextView;
+
+		MessageViewHolder(View v) {
 			super(v);
-			row = (LinearLayout) itemView.findViewById(R.id.row);
-			messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-			messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
+			row = itemView.findViewById(R.id.row);
+			messageTextView = itemView.findViewById(R.id.messageTextView);
+			messengerTextView = itemView.findViewById(R.id.messengerTextView);
 		}
 	}
 }

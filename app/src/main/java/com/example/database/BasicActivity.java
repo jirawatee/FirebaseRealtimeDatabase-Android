@@ -26,8 +26,8 @@ import java.util.Map;
 import static com.example.database.R.string.username;
 
 public class BasicActivity extends AppCompatActivity {
-	private static final String CHILD_USERS = "users";
-	private static final String CHILD_MESSAGES = "messages";
+	private static final String CHILD_USERS = "chat-users";
+	private static final String CHILD_MESSAGES = "chat";
 	private static final String UID = "id-12345";
 	private Button mButtonSet, mButtonPush, mButtonUpdateChildren, mButtonRemove;
 	private DatabaseReference mRootRef, mUsersRef, mMessageRef;
@@ -159,8 +159,8 @@ public class BasicActivity extends AppCompatActivity {
 					postValues.put("text", message);
 
 					Map<String, Object> childUpdates = new HashMap<>();
-					childUpdates.put("/messages/" + key, postValues);
-					childUpdates.put("/user-messages/" + mUsername + "/" + key, postValues);
+					childUpdates.put("/chat/" + key, postValues);
+					childUpdates.put("/chat-each-users/" + mUsername + "/" + key, postValues);
 					mRootRef.updateChildren(childUpdates);
 
 					mEdtMessage.setError(null);

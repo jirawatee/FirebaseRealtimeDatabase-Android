@@ -19,6 +19,7 @@ import com.example.database.R;
 import com.example.database.models.Post;
 import com.example.database.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +42,7 @@ public abstract class PostListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.fragment_all_posts, container, false);
-		mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
+		mRecycler = rootView.findViewById(R.id.messages_list);
 		mRecycler.setHasFixedSize(true);
 
 		mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -69,15 +70,14 @@ public abstract class PostListFragment extends Fragment {
 
 		// Set up FirebaseRecyclerAdapter with the Query
 		Query postsQuery = getQuery(mDatabase);
-		mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.item_post, PostViewHolder.class, postsQuery) {
-			@Override
-			public void onDataChanged() {
-				super.onDataChanged();
-				mDialog.dismiss();
-			}
 
+		FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
+				.setQuery(postsQuery, Post.class)
+				.build();
+
+		mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(options) {
 			@Override
-			protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
+			protected void onBindViewHolder(PostViewHolder viewHolder, int position, final Post model) {
 				final DatabaseReference postRef = getRef(position);
 
 				// Determine if the current user has liked this post and set UI accordingly
@@ -110,8 +110,36 @@ public abstract class PostListFragment extends Fragment {
 					}
 				});
 			}
+
+			@Override
+			public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+				LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+				return new PostViewHolder(inflater.inflate(R.layout.item_post, viewGroup, false));
+			}
+
+			@Override
+			public void onDataChanged() {
+				super.onDataChanged();
+				mDialog.dismiss();
+			}
 		};
 		mRecycler.setAdapter(mAdapter);
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (mAdapter != null) {
+			mAdapter.startListening();
+		}
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		if (mAdapter != null) {
+			mAdapter.stopListening();
+		}
 	}
 
 	private void onStarClicked(DatabaseReference postRef) {
@@ -143,14 +171,6 @@ public abstract class PostListFragment extends Fragment {
 				Log.d("postTransaction", "onComplete:" + dataSnapshot.getKey());
 			}
 		});
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		if (mAdapter != null) {
-			mAdapter.cleanup();
-		}
 	}
 
 	public String getUid() {
