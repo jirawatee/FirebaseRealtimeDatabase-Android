@@ -102,14 +102,14 @@ public class BasicActivity extends AppCompatActivity {
 	}
 
 	private void initWidget() {
-		mTextView = (TextView) findViewById(R.id.txt_result);
+		mTextView = findViewById(R.id.txt_result);
 		mTextView.setMovementMethod(new ScrollingMovementMethod());
-		mEdtUsername = (EditText) findViewById(R.id.edt_username);
-		mEdtMessage = (EditText) findViewById(R.id.edt_message);
-		mButtonSet = (Button) findViewById(R.id.btn_set);
-		mButtonPush = (Button) findViewById(R.id.btn_push);
-		mButtonUpdateChildren = (Button) findViewById(R.id.btn_update);
-		mButtonRemove = (Button) findViewById(R.id.btn_remove);
+		mEdtUsername = findViewById(R.id.edt_username);
+		mEdtMessage = findViewById(R.id.edt_message);
+		mButtonSet = findViewById(R.id.btn_set);
+		mButtonPush = findViewById(R.id.btn_push);
+		mButtonUpdateChildren = findViewById(R.id.btn_update);
+		mButtonRemove = findViewById(R.id.btn_remove);
 		mDialog = new Dialog(this, R.style.NewDialog);
 		mDialog.addContentView(
 				new ProgressBar(this),

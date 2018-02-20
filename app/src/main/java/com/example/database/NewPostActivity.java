@@ -27,9 +27,9 @@ public class NewPostActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_post);
-		mTitleField = (EditText) findViewById(R.id.field_title);
-		mBodyField = (EditText) findViewById(R.id.field_body);
-		mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_post);
+		mTitleField = findViewById(R.id.field_title);
+		mBodyField = findViewById(R.id.field_body);
+		mSubmitButton = findViewById(R.id.fab_submit_post);
 
 		mDatabase = FirebaseDatabase.getInstance().getReference();
 

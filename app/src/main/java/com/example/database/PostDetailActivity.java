@@ -40,15 +40,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post_detail);
-		mAuthorView = (TextView) findViewById(R.id.post_author);
-		mTitleView = (TextView) findViewById(R.id.post_title);
-		mBodyView = (TextView) findViewById(R.id.post_body);
-		mCommentField = (EditText) findViewById(R.id.field_comment_text);
+		mAuthorView = findViewById(R.id.post_author);
+		mTitleView = findViewById(R.id.post_title);
+		mBodyView = findViewById(R.id.post_body);
+		mCommentField = findViewById(R.id.field_comment_text);
 
-		mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
+		mCommentsRecycler = findViewById(R.id.recycler_comments);
 		mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-		Button mCommentButton = (Button) findViewById(R.id.button_post_comment);
+		Button mCommentButton = findViewById(R.id.button_post_comment);
 		mCommentButton.setOnClickListener(this);
 
 		// Get post key from intent
@@ -145,8 +145,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 		TextView bodyView;
 		CommentViewHolder(View itemView) {
 			super(itemView);
-			authorView = (TextView) itemView.findViewById(R.id.comment_author);
-			bodyView = (TextView) itemView.findViewById(R.id.comment_body);
+			authorView = itemView.findViewById(R.id.comment_author);
+			bodyView = itemView.findViewById(R.id.comment_body);
 		}
 	}
 

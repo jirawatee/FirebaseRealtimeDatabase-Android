@@ -25,8 +25,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_in);
 
-		mEmailField = (EditText) findViewById(R.id.field_email);
-		mPasswordField = (EditText) findViewById(R.id.field_password);
+		mEmailField = findViewById(R.id.field_email);
+		mPasswordField = findViewById(R.id.field_password);
 		findViewById(R.id.button_sign_in).setOnClickListener(this);
 		findViewById(R.id.button_sign_up).setOnClickListener(this);
 
