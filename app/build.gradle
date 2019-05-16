@@ -50,9 +50,9 @@ dependencies {
 	}
 
 	implementation 'com.firebaseui:firebase-ui-database:4.3.2'
-	implementation "com.google.firebase:firebase-core:16.0.8"
-	implementation "com.google.firebase:firebase-database:16.1.0"
-	implementation "com.google.firebase:firebase-auth:16.2.1"
+	implementation "com.google.firebase:firebase-core:16.0.9"
+	implementation "com.google.firebase:firebase-database:17.0.0"
+	implementation "com.google.firebase:firebase-auth:17.0.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
