@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion compileAndTargetSdk
-	buildToolsVersion '28.0.3'
+	buildToolsVersion '29.0.0'
 
 	defaultConfig {
 		applicationId "com.example.database"
-		minSdkVersion 28
+		minSdkVersion 21
 		targetSdkVersion compileAndTargetSdk
 		versionCode 1
 		versionName '1.0'
@@ -36,23 +36,14 @@ android {
 }
 
 dependencies {
-	implementation ("com.android.support:appcompat-v7:$supportLibraryVersion") {
-		force = true
-	}
-	implementation ("com.android.support:recyclerview-v7:$supportLibraryVersion") {
-		force = true
-	}
-	implementation ("com.android.support:cardview-v7:$supportLibraryVersion") {
-		force = true
-	}
-	implementation ("com.android.support:design:$supportLibraryVersion") {
-		force = true
-	}
-
-	implementation 'com.firebaseui:firebase-ui-database:4.3.2'
-	implementation "com.google.firebase:firebase-core:16.0.9"
-	implementation "com.google.firebase:firebase-database:17.0.0"
-	implementation "com.google.firebase:firebase-auth:17.0.0"
+	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'androidx.recyclerview:recyclerview:1.0.0'
+	implementation 'androidx.cardview:cardview:1.0.0'
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation 'com.firebaseui:firebase-ui-database:5.0.0'
+	implementation "com.google.firebase:firebase-core:17.0.0"
+	implementation "com.google.firebase:firebase-database:18.0.0"
+	implementation "com.google.firebase:firebase-auth:18.0.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
